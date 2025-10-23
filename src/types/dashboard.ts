@@ -62,3 +62,16 @@ export interface UserProfile {
   avatar: string;
   role: string;
 }
+
+export interface Project {
+  id: string;
+  name: string;
+  status: 'active' | 'inactive' | 'maintenance';
+  location: string;
+  capacity: number; // in MW
+  isSelected: boolean;
+}
+
+export interface ProjectData extends DashboardData {
+  selectedProjects: Project[];
+}
