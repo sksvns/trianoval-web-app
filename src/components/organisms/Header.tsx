@@ -41,8 +41,8 @@ export function Header({
               </Button>
             </div>
             
-            <Typography variant="h5" className="font-bold text-lg sm:text-xl">
-              SolarView
+            <Typography variant="h1" className="font-bold text-lg sm:text-xl">
+              KlarityIQ
             </Typography>
           </div>
 

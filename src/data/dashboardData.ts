@@ -120,13 +120,13 @@ export const getDataForPeriod = (periodId: string): DashboardData => {
     switch (periodId) {
       case '1w':
         return [
-          { period: 'Mon', actual: 85, baseline: 90, ghiAdjustedBaseline: 88 },
-          { period: 'Tue', actual: 92, baseline: 95, ghiAdjustedBaseline: 93 },
-          { period: 'Wed', actual: 78, baseline: 85, ghiAdjustedBaseline: 82 },
-          { period: 'Thu', actual: 88, baseline: 92, ghiAdjustedBaseline: 90 },
-          { period: 'Fri', actual: 95, baseline: 98, ghiAdjustedBaseline: 96 },
-          { period: 'Sat', actual: 102, baseline: 100, ghiAdjustedBaseline: 98 },
-          { period: 'Sun', actual: 89, baseline: 94, ghiAdjustedBaseline: 91 }
+          { period: 'Mon', actual: 45, baseline: 90, ghiAdjustedBaseline: 48 },
+          { period: 'Tue', actual: 42, baseline: 95, ghiAdjustedBaseline: 43 },
+          { period: 'Wed', actual: 38, baseline: 85, ghiAdjustedBaseline: 42 },
+          { period: 'Thu', actual: 48, baseline: 92, ghiAdjustedBaseline: 50 },
+          { period: 'Fri', actual: 45, baseline: 98, ghiAdjustedBaseline: 56 },
+          { period: 'Sat', actual: 52, baseline: 100, ghiAdjustedBaseline: 58 },
+          { period: 'Sun', actual: 59, baseline: 94, ghiAdjustedBaseline: 61 }
         ];
       case 'mtd':
         return [
@@ -219,13 +219,13 @@ export const getProjectData = (selectedProjects: Project[], periodId: string = '
     switch (periodId) {
       case '1w':
         baseData = [
-          { period: 'Mon', actual: 85, baseline: 90, ghiAdjustedBaseline: 88 },
-          { period: 'Tue', actual: 92, baseline: 95, ghiAdjustedBaseline: 93 },
-          { period: 'Wed', actual: 78, baseline: 85, ghiAdjustedBaseline: 82 },
-          { period: 'Thu', actual: 88, baseline: 92, ghiAdjustedBaseline: 90 },
-          { period: 'Fri', actual: 95, baseline: 98, ghiAdjustedBaseline: 96 },
-          { period: 'Sat', actual: 102, baseline: 100, ghiAdjustedBaseline: 98 },
-          { period: 'Sun', actual: 89, baseline: 94, ghiAdjustedBaseline: 91 }
+          { period: 'Mon', actual: 45, baseline: 90, ghiAdjustedBaseline: 48 },
+          { period: 'Tue', actual: 42, baseline: 95, ghiAdjustedBaseline: 43 },
+          { period: 'Wed', actual: 38, baseline: 85, ghiAdjustedBaseline: 42 },
+          { period: 'Thu', actual: 48, baseline: 92, ghiAdjustedBaseline: 50 },
+          { period: 'Fri', actual: 45, baseline: 98, ghiAdjustedBaseline: 56 },
+          { period: 'Sat', actual: 52, baseline: 100, ghiAdjustedBaseline: 58 },
+          { period: 'Sun', actual: 59, baseline: 94, ghiAdjustedBaseline: 61 }
         ];
         break;
       case 'mtd':
