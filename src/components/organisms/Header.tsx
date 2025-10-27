@@ -10,8 +10,8 @@ interface HeaderProps {
   className?: string;
   onMenuToggle?: () => void;
   sidebarOpen?: boolean;
-  currentPage?: 'company' | 'project';
-  onPageChange?: (page: 'company' | 'project') => void;
+  currentPage?: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting';
+  onPageChange?: (page: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting') => void;
 }
 
 export function Header({ 

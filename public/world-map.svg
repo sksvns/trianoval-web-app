@@ -1,0 +1,58 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- World map outline with green tinted landmasses -->
+  
+  <!-- North America -->
+  <path d="M150 120 L220 100 L240 130 L250 150 L240 200 L220 220 L200 210 L180 190 L170 170 L150 150 Z" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- South America -->
+  <path d="M200 230 L230 220 L250 260 L240 320 L220 340 L210 320 L200 280 Z" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Europe -->
+  <path d="M400 80 L480 70 L500 100 L490 140 L470 150 L460 140 L440 120 L420 110 L400 100 Z" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Africa -->
+  <path d="M430 150 L470 140 L490 180 L480 280 L450 320 L430 310 L420 280 L430 220 Z" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Asia -->
+  <path d="M480 80 L580 70 L600 100 L610 150 L600 200 L580 220 L550 210 L520 180 L500 130 L480 100 Z" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Australia -->
+  <path d="M580 240 L630 230 L640 260 L620 280 L590 270 Z" fill="#E8F5E9" stroke="#4CAF50" stroke-width="1"/>
+  
+  <!-- Project markers -->
+  
+  <!-- North America marker (green) -->
+  <circle cx="200" cy="160" r="8" fill="#22C55E" stroke="#fff" stroke-width="2"/>
+  
+  <!-- South America marker (yellow) -->
+  <circle cx="230" cy="260" r="8" fill="#EAB308" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Europe marker (blue) -->
+  <circle cx="450" cy="120" r="8" fill="#3B82F6" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Africa marker (red) -->
+  <circle cx="450" cy="220" r="8" fill="#EF4444" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Middle East marker (blue outline) -->
+  <circle cx="500" cy="140" r="8" fill="#fff" stroke="#3B82F6" stroke-width="3"/>
+  
+  <!-- Asia marker (green) -->
+  <circle cx="560" cy="160" r="8" fill="#22C55E" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Australia marker (yellow) -->
+  <circle cx="610" cy="250" r="8" fill="#EAB308" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Japan marker (red) -->
+  <circle cx="600" cy="130" r="8" fill="#EF4444" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Connection lines between some markers -->
+  <line x1="230" y1="260" x2="450" y2="220" stroke="#9E9E9E" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+  <line x1="450" y1="220" x2="500" y2="140" stroke="#9E9E9E" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+  <line x1="500" y1="140" x2="560" y2="160" stroke="#9E9E9E" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+  
+  <!-- Additional subtle details -->
+  <circle cx="200" cy="160" r="2" fill="#22C55E"/>
+  <circle cx="230" cy="260" r="2" fill="#EAB308"/>
+  <circle cx="450" cy="120" r="2" fill="#3B82F6"/>
+  <circle cx="450" cy="220" r="2" fill="#EF4444"/>
+</svg>

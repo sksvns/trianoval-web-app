@@ -8,6 +8,7 @@ import { TabOption, SidebarMenuItem } from '@/types/dashboard';
 export function CompanyOverviewPage() {
   const [currentData, setCurrentData] = useState(dashboardData);
   const [menuItems, setMenuItems] = useState(sidebarMenuItems);
+  const [activeView, setActiveView] = useState<'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting'>('company');
 
   const handleTabChange = (tabId: string) => {
     // Get updated data for the selected period
@@ -26,6 +27,14 @@ export function CompanyOverviewPage() {
 
     setMenuItems(updatedMenuItems);
 
+  // Switch the main view when settings, support, anomaly, or accounting is clicked
+  if (itemId === 'settings') setActiveView('settings');
+  else if (itemId === 'support') setActiveView('support');
+  else if (itemId === 'anomaly') setActiveView('anomaly');
+  else if (itemId === 'accounting') setActiveView('accounting');
+  else if (itemId === 'dashboard') setActiveView('company');
+  else setActiveView('company');
+
     // Here you would typically navigate to different pages/sections
     console.log(`Menu item clicked: ${itemId}`);
   };
@@ -37,6 +46,8 @@ export function CompanyOverviewPage() {
       user={userProfile}
       onTabChange={handleTabChange}
       onMenuItemClick={handleMenuItemClick}
+      activeView={activeView}
+      onViewChange={(v) => setActiveView(v)}
     />
   );
 }

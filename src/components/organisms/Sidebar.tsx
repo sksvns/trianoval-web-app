@@ -32,14 +32,14 @@ export function Sidebar({
       {/* Sidebar */}
       <aside
         className={cn(
-          'fixed left-0 top-0 z-50 h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-all duration-300 md:relative md:top-0 md:h-[calc(100vh-3.5rem)] sm:md:h-[calc(100vh-4rem)] md:transform-none md:z-auto md:block md:pt-0',
+          'fixed left-0 top-14 sm:top-16 h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] md:relative md:top-0 md:h-full w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform transition-all duration-300 md:transform-none md:z-auto md:block overflow-hidden',
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0',
           className
         )}
       >
         <div className="flex flex-col h-full">
           {/* Mobile header with back button */}
-          <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 min-h-[3.5rem] sm:min-h-[4rem]">
+          <div className="md:hidden flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
             <Typography variant="h6" className="font-semibold">
               Menu
             </Typography>
@@ -52,19 +52,26 @@ export function Sidebar({
             </button>
           </div>
           
+          {/* Logo/Brand - Desktop only */}
+          {/* <div className="hidden md:block p-4 border-b border-gray-200 dark:border-gray-700">
+            <Typography variant="h6" className="font-bold text-blue-600 dark:text-blue-400">
+              KlarityIQ
+            </Typography>
+          </div> */}
+          
           {/* Menu */}
-          <div className="flex-1 p-3 sm:p-4 pt-3 md:pt-3 sm:md:pt-4">
+          <div className="flex-1 p-3 sm:p-4">
             <SidebarMenu 
               items={menuItems} 
               onItemClick={onMenuItemClick}
             />
           </div>
           
-          {/* Support at bottom */}
-          <div className="p-3 sm:p-4 border-t border-gray-200 dark:border-gray-700">
+          {/* Support at bottom - sticky */}
+          <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
             <button
               onClick={() => onMenuItemClick('support')}
-              className="w-full flex items-center gap-3 px-2 sm:px-3 py-2 rounded-lg text-left transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-100 dark:hover:bg-gray-700"
+              className="w-full flex items-center gap-3 px-4 py-3 text-left transition-all duration-200 text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-100 dark:hover:bg-gray-700"
             >
               <span className="text-lg sm:text-xl">💬</span>
               <Typography variant="body1" color="secondary" className="font-medium">

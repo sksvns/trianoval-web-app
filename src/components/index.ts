@@ -21,3 +21,5 @@ export { DashboardLayout } from './templates/DashboardLayout';
 
 // Pages
 export { CompanyOverviewPage } from './pages/CompanyOverviewPage';
+export { SettingsPage } from './pages/SettingsPage';
+export { SupportPage } from './pages/SupportPage';

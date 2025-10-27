@@ -75,3 +75,14 @@ export interface Project {
 export interface ProjectData extends DashboardData {
   selectedProjects: Project[];
 }
+
+export interface Recipient {
+  id: string;
+  email: string;
+}
+
+export interface SiteDetails {
+  address: string;
+  pointOfContact: string;
+  hardwareDetails: string;
+}
