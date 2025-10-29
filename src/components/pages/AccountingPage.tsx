@@ -13,16 +13,47 @@ export function AccountingPage({ className }: { className?: string }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilter, setShowFilter] = useState(false);
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [filterOptions, setFilterOptions] = useState({
+    showAmount: false,
+    showRate: false
+  });
+  const [appliedFilters, setAppliedFilters] = useState({
+    showAmount: false,
+    showRate: false
+  });
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
   const itemsPerPage = 7;
 
   const handleFilterClick = () => {
     setShowFilter(!showFilter);
-    // Add filter functionality here
+    setShowCalendar(false);
   };
 
   const handleCalendarClick = () => {
-    // Add calendar functionality here
-    alert('Calendar filter feature coming soon');
+    setShowCalendar(!showCalendar);
+    setShowFilter(false);
+  };
+
+  const handleFilterChange = (key: 'showAmount' | 'showRate') => {
+    setFilterOptions(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const applyFilters = () => {
+    setAppliedFilters({ ...filterOptions });
+    setShowFilter(false);
+    setCurrentPage(1);
+  };
+
+  const clearFilters = () => {
+    setFilterOptions({ showAmount: false, showRate: false });
+    setAppliedFilters({ showAmount: false, showRate: false });
+    setStartDate('');
+    setEndDate('');
+    setShowFilter(false);
+    setShowCalendar(false);
+    setCurrentPage(1);
   };
 
   const filteredTransactions = useMemo(() => {
@@ -41,8 +72,26 @@ export function AccountingPage({ className }: { className?: string }) {
       );
     }
 
+    // Filter by date range
+    if (startDate) {
+      filtered = filtered.filter(t => t.date >= startDate);
+    }
+    if (endDate) {
+      filtered = filtered.filter(t => t.date <= endDate);
+    }
+
+    // Filter by amount (show only transactions with amount > 5000)
+    if (appliedFilters.showAmount) {
+      filtered = filtered.filter(t => t.amount > 5000);
+    }
+
+    // Filter by rate (show only transactions with rate > 0.10)
+    if (appliedFilters.showRate) {
+      filtered = filtered.filter(t => t.rate > 0.10);
+    }
+
     return filtered;
-  }, [searchQuery]);
+  }, [searchQuery, startDate, endDate, appliedFilters]);
 
   const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -161,14 +210,55 @@ export function AccountingPage({ className }: { className?: string }) {
               </svg>
             </button>
             
-            <button 
-              onClick={handleCalendarClick}
-              className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
-            >
-              <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </button>
+            <div className="relative">
+              <button 
+                onClick={handleCalendarClick}
+                className={cn(
+                  "px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center justify-center",
+                  (startDate || endDate) && "bg-blue-50 dark:bg-blue-900/30 border-blue-500"
+                )}
+              >
+                <svg className="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </button>
+              
+              {/* Date Range Picker */}
+              {showCalendar && (
+                <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-10 p-4">
+                  <Typography variant="subtitle1" className="font-semibold mb-3">Select Date Range</Typography>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Start Date</label>
+                      <input
+                        type="date"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">End Date</label>
+                      <input
+                        type="date"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                        min={startDate}
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                    <div className="flex gap-2 pt-2">
+                      <Button variant="primary" onClick={() => { setShowCalendar(false); setCurrentPage(1); }} className="flex-1">
+                        Apply
+                      </Button>
+                      <Button variant="secondary" onClick={clearFilters} className="flex-1">
+                        Clear
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
             
             <button 
               onClick={exportToCSV}
@@ -180,6 +270,41 @@ export function AccountingPage({ className }: { className?: string }) {
             </button>
           </div>
         </div>
+
+        {/* Filter Dropdown */}
+        {showFilter && (
+          <div className="mb-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4">
+            <Typography variant="subtitle1" className="font-semibold mb-3">Filter Options</Typography>
+            <div className="space-y-2">
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={filterOptions.showAmount}
+                  onChange={() => handleFilterChange('showAmount')}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Amount (&gt; 5000 KWH)</span>
+              </label>
+              <label className="flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={filterOptions.showRate}
+                  onChange={() => handleFilterChange('showRate')}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span className="ml-2 text-sm text-gray-700 dark:text-gray-300">Rate (&gt; $0.10/KWH)</span>
+              </label>
+            </div>
+            <div className="flex gap-2 mt-4">
+              <Button variant="primary" onClick={applyFilters} className="flex-1">
+                Apply Filter
+              </Button>
+              <Button variant="secondary" onClick={clearFilters} className="flex-1">
+                Clear
+              </Button>
+            </div>
+          </div>
+        )}
 
         {/* Table */}
         <div className="overflow-x-auto">

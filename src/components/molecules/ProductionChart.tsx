@@ -26,9 +26,9 @@ function BarChart({ data, legendItems }: BarChartProps) {
   return (
     <div className="space-y-4">
       {/* Chart area */}
-      <div className="relative h-80 bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pl-16 pb-12">
+      <div className="relative h-80 bg-gray-50 dark:bg-gray-700 rounded-lg p-4 pl-16 pr-6 pb-16 overflow-hidden z-0">
         {/* Y-axis labels */}
-        <div className="absolute left-1 top-4 h-60 flex flex-col justify-between text-xs text-gray-500 dark:text-gray-400">
+        <div className="absolute left-1 top-4 h-60 flex flex-col justify-between text-xs text-gray-500 dark:text-gray-400 z-0">
           <span>{Math.round(maxValue)}</span>
           <span>{Math.round(maxValue * 0.8)}</span>
           <span>{Math.round(maxValue * 0.6)}</span>
@@ -38,7 +38,7 @@ function BarChart({ data, legendItems }: BarChartProps) {
         </div>
         
         {/* Chart bars */}
-        <div className="flex items-end justify-between h-60 space-x-2 ml-10">
+        <div className="flex items-end justify-around h-60 gap-2 ml-10 pr-2">
           {data.map((point, index) => {
             // Calculate heights as percentage of chart area (240px = h-60)
             const actualHeight = Math.max(minBarHeight, (point.actual / maxValue) * 220);
@@ -48,7 +48,7 @@ function BarChart({ data, legendItems }: BarChartProps) {
             return (
               <div key={index} className="flex-1 flex flex-col items-center">
                 {/* Bars container */}
-                <div className="flex items-end space-x-1 h-56 w-full justify-center">
+                <div className="flex items-end gap-1 h-56 w-full justify-center">
                   {/* Actual bar */}
                   <div className="relative w-4">
                     <div 
@@ -77,8 +77,8 @@ function BarChart({ data, legendItems }: BarChartProps) {
                   </div>
                 </div>
                 
-                {/* Period label - positioned below bars with more spacing */}
-                <div className="mt-3">
+                {/* Period label - ensure it stays within chart bounds */}
+                <div className="mt-3 truncate max-w-full">
                   <Typography variant="body2" color="secondary" className="text-xs text-center font-medium">
                     {point.period}
                   </Typography>

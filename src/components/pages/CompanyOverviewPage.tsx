@@ -8,7 +8,7 @@ import { TabOption, SidebarMenuItem } from '@/types/dashboard';
 export function CompanyOverviewPage() {
   const [currentData, setCurrentData] = useState(dashboardData);
   const [menuItems, setMenuItems] = useState(sidebarMenuItems);
-  const [activeView, setActiveView] = useState<'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting'>('company');
+  const [activeView, setActiveView] = useState<'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' | 'forecasting'>('company');
 
   const handleTabChange = (tabId: string) => {
     // Get updated data for the selected period
@@ -27,11 +27,12 @@ export function CompanyOverviewPage() {
 
     setMenuItems(updatedMenuItems);
 
-  // Switch the main view when settings, support, anomaly, or accounting is clicked
+  // Switch the main view when settings, support, anomaly, accounting, or forecasting is clicked
   if (itemId === 'settings') setActiveView('settings');
   else if (itemId === 'support') setActiveView('support');
   else if (itemId === 'anomaly') setActiveView('anomaly');
   else if (itemId === 'accounting') setActiveView('accounting');
+  else if (itemId === 'forecasting') setActiveView('forecasting');
   else if (itemId === 'dashboard') setActiveView('company');
   else setActiveView('company');
 

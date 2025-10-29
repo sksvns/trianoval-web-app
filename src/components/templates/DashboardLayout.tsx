@@ -8,6 +8,7 @@ import { SettingsPage } from '@/components/pages/SettingsPage';
 import { SupportPage } from '@/components/pages/SupportPage';
 import { AnomalyPage } from '@/components/pages/AnomalyPage';
 import { AccountingPage } from '@/components/pages/AccountingPage';
+import { ForecastingPage } from '@/components/pages/ForecastingPage';
 import { MobilePageSelector } from '@/components/molecules/MobilePageSelector';
 import { Button } from '@/components/atoms/Button';
 import { cn } from '@/utils/helpers';
@@ -18,10 +19,10 @@ interface DashboardLayoutProps {
   user: UserProfile;
   onTabChange: (tabId: string) => void;
   onMenuItemClick: (itemId: string) => void;
-  /** Optional controlled view: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' */
-  activeView?: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting';
+  /** Optional controlled view: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' | 'forecasting' */
+  activeView?: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' | 'forecasting';
   /** Optional callback when view changes (header tabs or other) */
-  onViewChange?: (view: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting') => void;
+  onViewChange?: (view: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' | 'forecasting') => void;
 }
 
 export function DashboardLayout({
@@ -33,11 +34,11 @@ export function DashboardLayout({
   , activeView, onViewChange
 }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [internalPage, setInternalPage] = useState<'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting'>('company');
+  const [internalPage, setInternalPage] = useState<'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' | 'forecasting'>('company');
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
-  const handlePageChange = (page: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting') => {
+  const handlePageChange = (page: 'company' | 'project' | 'settings' | 'support' | 'anomaly' | 'accounting' | 'forecasting') => {
     // If parent controls activeView, notify it; otherwise update internal state
     if (onViewChange) onViewChange(page);
     else setInternalPage(page);
@@ -61,6 +62,10 @@ export function DashboardLayout({
     if (itemId === 'accounting') {
       if (onViewChange) onViewChange('accounting');
       else setInternalPage('accounting');
+    }
+    if (itemId === 'forecasting') {
+      if (onViewChange) onViewChange('forecasting');
+      else setInternalPage('forecasting');
     }
     // Always forward menu clicks to parent handler
     onMenuItemClick(itemId);
@@ -117,6 +122,8 @@ export function DashboardLayout({
               <AnomalyPage />
             ) : currentPage === 'accounting' ? (
               <AccountingPage />
+            ) : currentPage === 'forecasting' ? (
+              <ForecastingPage />
             ) : null}
           </main>
         </div>
