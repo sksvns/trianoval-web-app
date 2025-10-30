@@ -164,7 +164,7 @@ export function AccountingPage({ className }: { className?: string }) {
 
       <Card padding="lg" shadow="sm">
         {/* Combined Tabs and Action Bar in one row */}
-        <div className="flex flex-col lg:flex-row lg:items-center gap-24 mb-6">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-24 gap-6 mb-6">
           {/* Tabs */}
           <div className="flex gap-2 flex-shrink-0">
             <Button
@@ -348,7 +348,7 @@ export function AccountingPage({ className }: { className?: string }) {
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between mt-6">
           <Typography variant="body2" className="text-gray-600 dark:text-gray-400">
             Showing {startIndex + 1} to {Math.min(startIndex + itemsPerPage, filteredTransactions.length)} of {filteredTransactions.length} results
           </Typography>

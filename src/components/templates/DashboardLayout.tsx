@@ -106,7 +106,7 @@ export function DashboardLayout({
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Add top spacing on mobile for the page selector */}
           <div className="md:hidden h-12 sm:h-14"></div>
-          <main className="flex-1 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto mt-16">
             {currentPage === 'company' ? (
               <DashboardContent 
                 data={dashboardData}
